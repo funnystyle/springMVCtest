@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://bxslider.com/lib/jquery.bxslider.min.js"></script>
+
+	<link rel="stylesheet" href="http://bxslider.com/lib/jquery.bxslider.css" type="text/css" />
+	<link rel="stylesheet" href="http://bxslider.com/css/styles.css" type="text/css" />
+
+	<script>
+		var slides;
+		var width;
+		var slider;
+		var margin = 10;
+
+		$(document).ready(function(){
+			slider = $('.bxslider').bxSlider(getSlideInfo());
+		});
+
+		$(window).resize(function() {
+			slider.reloadSlider(getSlideInfo());
+		});
+
+		function getSlideInfo() {
+			slides = getSlideNumber($(window).width());
+			width = getSlideWidth(slides);
+			return { minSlides: slides, maxSlides: slides, slideWidth: width, slideMargin: margin };
+		}
+		function getSlideNumber(width) {
+			if (width >= 1440) return 6;
+			else if (width >= 1024) return 5;
+			else if (width >= 768) return 4;
+			else return 2;
+		}
+
+		function getSlideWidth(slides) {
+			width = $(window).width() - margin * slides - 100; // TODO: 조정 필요
+			return width/slides;
+		}
+	</script>
+</head>
+
+<body>
+	<ul class="bxslider">
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar1"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar2"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar3"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar4"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar5"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar6"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar7"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar8"></div>
+	  <div class="slide"><img src="http://placehold.it/350x150&text=FooBar9"></div>
+	</ul>
+</body>
+</html>

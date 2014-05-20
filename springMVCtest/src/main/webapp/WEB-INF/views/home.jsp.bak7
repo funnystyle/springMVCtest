@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+
+	<script src="/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+	<script src="/lib/jquery.mobile-1.4.0/popup-image-scaling.js"></script>
+	
+	<link rel="stylesheet" href="/lib/jquery.bxslider/styles.css" type="text/css" />
+	<link rel="stylesheet" href="/lib/jquery.bxslider/jquery.bxslider.css" type="text/css" />
+	
+	<style type="text/css">
+		.calendar th, .calendar td { text-align:center;}
+		.saturday { color:blue; }
+		.sunday { color:red; }
+		.not_this_month_day { color:gray; }
+	</style>
+	<script>
+		var slides; // 보여줄 슬라이드 갯수
+		var width; // 슬라이드 하나당 너비
+		var slider; // 슬라이드 객체
+		var margin = 10; // 좌우 마진
+
+		var json = [
+// 			{ slideId : "slide1", imageUrl : "/resources/20140105_153353.jpg"},
+// 			{ slideId : "slide2", imageUrl : "/resources/2014년도_달력용_매일교회_로고.png"},
+// 			{ slideId : "slide3", imageUrl : "/resources/everychurch_logo_english.png"},
+// 			{ slideId : "slide4", imageUrl : "/resources/N301.jpg"},
+			{ slideId : "slide5", imageUrl : "http://placehold.it/350x150&text=FooBar5"},
+			{ slideId : "slide6", imageUrl : "http://placehold.it/350x150&text=FooBar6"},
+			{ slideId : "slide7", imageUrl : "http://placehold.it/350x150&text=FooBar7"},
+			{ slideId : "slide8", imageUrl : "http://placehold.it/350x150&text=FooBar8"},
+			{ slideId : "slide9", imageUrl : "http://placehold.it/350x150&text=FooBar9"},
+		];
+		$(document).ready(function() {
+
+			$.tmpl($("#sliderTemplate"), json).appendTo("#bxslider");
+			//$.tmpl($("#popupTemplate"), json).appendTo("#homeBody");
+			
+			//$('#homeBody').trigger('create');
+			//$(".photopopup").popup();
+// 			$(".photopopup img").attr("display:block");
+
+			$(".slide").on( "click",  function() {
+				var imageUrl = $(this).children().attr("src");
+ 				var id = this.id;
+				var closebtn = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-btn-right">Close</a>';
+				var img = '<img src="' + imageUrl + '" class="photo">';
+				var popup = '<div data-role="popup" id="popup-' + id + '" data-short="' + id +'" data-theme="none" data-overlay-theme="a" data-corners="false" data-tolerance="15">' + closebtn + img + '</div>';
+				
+				var maxWidth = $( window ).width() - 60 + "px";
+				var maxHeight = $( window ).height() - 60 + "px";
+				
+				var template = "<div data-role='popup' class='ui-content messagePopup'>"  
+					+ "<a href='#' data-role='button' data-theme='g' data-icon='delete' data-iconpos='notext' "  
+					+ " class='ui-btn-right closePopup'>Close</a> <span><img src='"    
+					+ imageUrl + "' style='max-width:" + maxWidth + "; max-height:" + maxHeight + "'/></span> </div>";
+					
+				// Create the popup. Trigger "pagecreate" instead of "create" because currently the framework doesn't bind the enhancement of toolbars to the "create" event (js/widgets/page.sections.js).
+				$.mobile.activePage.append( template ).trigger( "create" );
+				// Wait with opening the popup until the popup image has been loaded in the DOM.
+				// This ensures the popup gets the correct size and position
+// 				$( ".photo", "#popup-" + short ).load(function() {
+// 					var height = $( this ).height(),
+// 						width = $( this ).width();
+// 					// Set height and width attribute of the image
+// 					$( this ).attr({ "height": height, "width": width });
+// 					// Open the popup
+// 					$( "#popup-" + short ).popup( "open" );
+// 					// Clear the fallback
+// 					clearTimeout( fallback );
+// 				});
+				$.mobile.activePage.find(".closePopup").bind("click", function (e) {  
+					$.mobile.activePage.find(".messagePopup").popup("close");
+				}); 
+				$.mobile.activePage.find(".messagePopup").popup("open");
+				// Fallback in case the browser doesn't fire a load event
+// 				var fallback = setTimeout(function() {
+// 					$( "#popup-" + short ).popup( "open" );
+// 				}, 2000);
+			});
+			
+			// Set a max-height to make large images shrink to fit the screen.
+			$( document ).on( "popupbeforeposition", ".ui-popup", function() {
+				// 68px: 2 * 15px for top/bottom tolerance, 38px for the header.
+				var maxHeight = $( window ).height() - 68 + "px";
+
+				$( "img.photo", this ).css( "max-height", maxHeight );
+			});
+			
+			// Remove the popup after it has been closed to manage DOM size
+			$( document ).on( "popupafterclose", ".ui-popup", function() {
+				$( this ).remove();
+			});
+		});
+
+		$(window).load(function(){
+			slider = $('.bxslider').bxSlider(getSliderOption());
+			
+		});
+
+		$(window).resize(function() {
+			if (typeof slider != "undefined") {
+				slider.reloadSlider(getSliderOption());
+			}
+		});
+
+		function getSliderOption() {
+			slides = getSlideNumber($(window).width());
+			width = getSlideWidth(slides);
+			return { minSlides: slides, maxSlides: slides, slideWidth: width, slideMargin: margin };
+		}
+
+		function getSlideNumber(width) {
+			if (width >= 1440) return 6;
+			else if (width >= 1024) return 5;
+			else if (width >= 768) return 4;
+			else return 2;
+		}
+
+		function getSlideWidth(slides) {
+			width = $(window).width() - margin * (slides - 1);
+			return width/slides;
+		}
+		
+	</script>
+
+<div id="homeBody" role="main" class="ui-content jqm-content jqm-fullwidth">
+
+	<!-- Photo Slider -->
+	<ul id="bxslider" class="bxslider">
+	</ul>
+	
+	<div id="imagePopup">
+	</div>
+	
+	<script id="sliderTemplate" type="text/x-jquery-tmpl">
+	 	<li><a href="#" class="slide" id="\${slideId}"><img src="\${imageUrl}"></a></li>
+	</script>
+	
+</div>

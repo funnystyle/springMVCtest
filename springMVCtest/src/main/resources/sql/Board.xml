@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Board">
+	<typeAlias alias="Board" type="kr.co.springMVCtest.domain.Board" />
+
+	<delete id="delete" parameterClass="int">
+		delete from board where seq = #seq#
+	</delete>
+
+	<insert id="add" parameterClass="Board">
+		insert into board (
+			TITLE,
+			ID,
+			CONTENTS,
+			COUNT,
+			CREATED,
+			MODIFIED
+		) values (
+			#title#,
+			#id#,
+			#contents#,
+			0,
+			now(),
+			now()
+		)
+	
+		<selectKey keyProperty="seq" resultClass="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+ 	</insert>
+ 	
+	<update id="update" parameterClass="Board">
+		update board 
+		set 
+			TITLE = #title#,
+			CONTENTS = #contents#,
+			MODIFIED = now()
+		where seq = #seq#
+	</update>
+ 	
+	<select id="get" parameterClass="int" resultClass="Board">
+		select * from board where seq = #seq#
+ 	</select>
+
+	<select id="list" resultClass="Board">
+		select * from board order by seq desc
+ 	</select>
+ 	
+ 	<update id="incrementCount" parameterClass="int">
+		update board 
+		set 
+			COUNT = COUNT + 1
+		where seq = #seq#
+	</update>
+</sqlMap>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Member">
+	<typeAlias alias="Member" type="kr.co.springMVCtest.domain.Member" />
+
+	<delete id="delete" parameterClass="int">
+		delete from member where seq = #seq#
+	</delete>
+
+	<insert id="add" parameterClass="Member">
+		insert into member (
+			id,
+			password,
+			name,
+			birthday,
+			email,
+			mobilephone_1,
+			mobilephone_2,
+			mobilephone_3,
+			sex,
+			created,
+			modified,
+			enabled
+		) values (
+			#id#,
+			#password#,
+			#name#,
+			#birthday#,
+			#email#,
+			#mobilephone_1#,
+			#mobilephone_2#,
+			#mobilephone_3#,
+			#sex#,
+			now(),
+			now(),
+			TRUE
+		)
+	
+		<selectKey keyProperty="seq" resultClass="int">
+			SELECT  LAST_INSERT_ID()
+		</selectKey>
+ 	</insert>
+ 	
+	<update id="update" parameterClass="Member">
+		update member 
+		set 
+			id = #id#,
+			password = #password#,
+			name = #name#,
+			birthday = #birthday#,
+			email = #email#,
+			mobilephone_1 = #mobilephone_1#,
+			mobilephone_2 = #mobilephone_2#,
+			mobilephone_3 = #mobilephone_3#,
+			sex = #sex#,
+			created = #created#,
+			modified = now(),
+			enabled = #enabled#
+		where seq = #seq#
+	</update>
+ 	
+	<select id="get" parameterClass="int" resultClass="Member">
+		select * from member where seq = #seq#
+ 	</select>
+
+	<select id="list" resultClass="Member">
+		select * from member order by seq
+ 	</select>
+</sqlMap>
