@@ -8,10 +8,9 @@
 	<!-- Bootstrap -->
 	<link href="/lib/bootstrap-3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	
-	<!-- Custom styles for this template -->
-	<link href="/lib/bootstrap-3.1.1/custom/starter-template.css" rel="stylesheet">
-	<link href="/lib/bootstrap-3.1.1/custom/signin.css" rel="stylesheet">
-	
+	<!-- Bootstrap theme -->
+    <link href="/lib/bootstrap-3.1.1/css/bootstrap-theme.min.css" rel="stylesheet">
+    
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -31,7 +30,7 @@
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="/lib/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js"></script>	
+	
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript" src="/lib/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     

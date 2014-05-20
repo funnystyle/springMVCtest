@@ -20,12 +20,12 @@ public class MemberDaoImpl implements MemberDao {
 		sqlMapClientTemplate.insert("Member.add", member);
 	}
 
-	public void delete(int seq) {
-		sqlMapClientTemplate.delete("Member.delete", seq);
+	public void delete(String id) {
+		sqlMapClientTemplate.delete("Member.delete", id);
 	}
 
-	public Member get(int seq) {
-		return (Member) sqlMapClientTemplate.queryForObject("Member.get", seq);
+	public Member get(String id) {
+		return (Member) sqlMapClientTemplate.queryForObject("Member.get", id);
 	}
 	
 	public void update(Member member) {

@@ -1,5 +1,3 @@
-$.mobile.ajaxEnabled = false;
-
 /* Date Formatter */
 Date.prototype.format = function(format) { // author: meizz
 	var hours = this.getHours();
@@ -40,7 +38,7 @@ function getJsonData(url, template, location){
 		dataType : 'json',
 		success : function(json) {
 			if(json.data == "") alert("no more data");
-			$.tmpl($(template), json.data).prependTo(location);
+			$.tmpl($(template), json.data).appendTo(location);
 			// loader end
 		},
 		error : function() {
@@ -54,7 +52,6 @@ function getJsonData(url, template, location){
 }
 
 function ajaxDelete(url, nextUrl) {
-	alert(url);
 	//$.mobile.loading( "show");
 	$.ajax({
 		url : url,

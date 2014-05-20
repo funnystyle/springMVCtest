@@ -14,7 +14,7 @@
 	//var currentPage = 1;
 	
 	$(document).ready(function() {
-		getJsonData("/member/${seq}.json", "#dataTemplate", "#tableBody");
+		getJsonData("/member/${id}.json", "#dataTemplate", "#tableBody");
 	});
 
 </script>

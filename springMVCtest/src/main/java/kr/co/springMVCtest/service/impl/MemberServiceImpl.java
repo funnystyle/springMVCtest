@@ -22,12 +22,12 @@ public class MemberServiceImpl implements MemberService {
 		dao.add(member);
 	}
 
-	public void delete(int seq) {
-		dao.delete(seq);
+	public void delete(String id) {
+		dao.delete(id);
 	}
 
-	public Member get(int seq) {
-		return dao.get(seq);
+	public Member get(String id) {
+		return dao.get(id);
 	}
 
 	public List<Member> list(int page) {

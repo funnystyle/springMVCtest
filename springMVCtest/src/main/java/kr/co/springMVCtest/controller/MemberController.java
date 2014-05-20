@@ -39,10 +39,10 @@ public class MemberController {
 		return "redirect:/member";
 	}
 
-	@RequestMapping(value = "member/{seq}", method = RequestMethod.PUT) // member update
-	public String updateSubmit(@Valid Member member, @PathVariable int seq, BindingResult result, SessionStatus status){
+	@RequestMapping(value = "member/{id}", method = RequestMethod.PUT) // member update
+	public String updateSubmit(@Valid Member member, @PathVariable String id, BindingResult result, SessionStatus status){
 		if(result.hasErrors()) {
-			return "/member/" + seq + "/form";
+			return "/member/" + id + "/form";
 		}
 		
 		// TODO : 권한체크
@@ -51,9 +51,9 @@ public class MemberController {
 		return "redirect:/member";
 	}
 
-	@RequestMapping(value = "/member/{seq}", method = RequestMethod.GET) // member view skeleton
-	public String view(@PathVariable int seq, Model model){
-		model.addAttribute("seq", seq);
+	@RequestMapping(value = "/member/{id}", method = RequestMethod.GET) // member view skeleton
+	public String view(@PathVariable String id, Model model){
+		model.addAttribute("id", id);
 		return "member/view";
 	}
 
@@ -62,9 +62,9 @@ public class MemberController {
 		model.addAttribute("member", new Member());
 	}
 
-	@RequestMapping("/member/{seq}/form") // member update form
-	public String updateForm(@PathVariable int seq, Model model){
-		model.addAttribute("member", memberService.get(seq));
+	@RequestMapping("/member/{id}/form") // member update form
+	public String updateForm(@PathVariable String id, Model model){
+		model.addAttribute("member", memberService.get(id));
 		return "member/update";
 	}
 
@@ -78,15 +78,15 @@ public class MemberController {
 		model.addAttribute("data", memberService.list(page));
 	}
 
-	@RequestMapping(value = "/member/{seq}.json", method = RequestMethod.GET) // member view
-	public void jsonView(@PathVariable int seq, Model model){
-		model.addAttribute("data", memberService.get(seq));
+	@RequestMapping(value = "/member/{id}.json", method = RequestMethod.GET) // member view
+	public void jsonView(@PathVariable String id, Model model){
+		model.addAttribute("data", memberService.get(id));
 	}
 	
-	@RequestMapping(value = "/member/{seq}.json", method = RequestMethod.DELETE)
-	public void jsonDelete(@PathVariable int seq){ // only accessed by ajax & DELETE method
+	@RequestMapping(value = "/member/{id}.json", method = RequestMethod.DELETE)
+	public void jsonDelete(@PathVariable String id){ // only accessed by ajax & DELETE method
 		// TODO : 권한체크
 		System.out.println("member delete");
-		memberService.delete(seq);
+		memberService.delete(id);
 	}
 }

@@ -7,7 +7,7 @@ import kr.co.springMVCtest.domain.Member;
 public interface MemberDao {
 	void add(Member member);
 	void update(Member member);
-	Member get(int seq);
+	Member get(String id);
 	List<Member> list(int page);
-	void delete(int seq);
+	void delete(String id);
 }
