@@ -72,19 +72,19 @@ public class MemberController {
 	 * json controllers
 	 * return data name must be "data"
 	 */
-	@RequestMapping(value = "/member/{seq}.json", method = RequestMethod.GET) // member view
-	public void jsonView(@PathVariable int seq, Model model){
-		model.addAttribute("data", memberService.get(seq));
-	}
-	
 	@RequestMapping(value = "/member.json", method = RequestMethod.GET) // member list
 	public void jsonList(@RequestParam(required = false, defaultValue = "1") int page, Model model){
 		System.out.println("member.json");
 		model.addAttribute("data", memberService.list(page));
 	}
 
+	@RequestMapping(value = "/member/{seq}.json", method = RequestMethod.GET) // member view
+	public void jsonView(@PathVariable int seq, Model model){
+		model.addAttribute("data", memberService.get(seq));
+	}
+	
 	@RequestMapping(value = "/member/{seq}.json", method = RequestMethod.DELETE)
-	public void ajaxDelete(@PathVariable int seq){ // only accessed by ajax & DELETE method
+	public void jsonDelete(@PathVariable int seq){ // only accessed by ajax & DELETE method
 		// TODO : 권한체크
 		System.out.println("member delete");
 		memberService.delete(seq);
