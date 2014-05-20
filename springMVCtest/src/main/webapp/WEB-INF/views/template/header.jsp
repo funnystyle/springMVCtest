@@ -9,7 +9,8 @@
 	<link href="/lib/bootstrap-3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this template -->
-	<link href="/lib/bootstrap-3.1.1/css/starter-template.css" rel="stylesheet">
+	<link href="/lib/bootstrap-3.1.1/custom/starter-template.css" rel="stylesheet">
+	<link href="/lib/bootstrap-3.1.1/custom/signin.css" rel="stylesheet">
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
