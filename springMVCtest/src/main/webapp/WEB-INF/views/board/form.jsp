@@ -43,7 +43,7 @@
 				$('#edit').editable({
         		  inlineMode: false, 
         		  language: "ko", 
-	        	  placeholder : "",
+	        	  placeholder : "내용을 입력하세요",
 	        	  height : 300,
 	        	  borderColor: "#CCC",
 	        	  typingTimer: 10000,
