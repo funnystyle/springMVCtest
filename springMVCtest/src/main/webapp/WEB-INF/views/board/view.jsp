@@ -27,8 +27,8 @@
 		</div>
 
 		<div class="btn_group text-center">
-			<a href="/board/\${seq}/form" class="btn btn-default">수정</a>
-			<a href="javascript:ajaxDelete('/board/' + \${seq} + '.json', '/board')" class="btn btn-default">삭제</a>
-			<a href="/board" class="btn btn-default">목록</a>
+			<a href="/board/\${seq}/form" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> 수정</a>
+			<a href="javascript:ajaxDelete('/board/' + \${seq} + '.json', '/board')" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> 삭제</a>
+			<a href="/board" class="btn btn-default"><span class="glyphicon glyphicon-list"></span> 목록</a>
 		</div>
 	</script>

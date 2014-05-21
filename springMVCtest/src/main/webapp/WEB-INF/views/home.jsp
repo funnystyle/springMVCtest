@@ -10,7 +10,7 @@
       <div class="container">
         <h1>환영합니다!</h1>
         <p>이곳은 매일교회 식구들의 온라인 놀이터입니다. </p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+        <p><a href="http://125.143.41.223:8000/listen.pls" class="btn btn-primary btn-lg" role="button" target="_blank">매일교회 방송 듣기 &raquo;</a></p>
       </div>
     </div>
     	
