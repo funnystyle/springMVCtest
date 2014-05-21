@@ -20,8 +20,10 @@
 		</p>	
 	</div>
 
-	<div class="well">
-		<p>\${contents}</p>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			{{html contents}}
+		</div>
 	</div>
 
 	<div class="btn_group text-center">
